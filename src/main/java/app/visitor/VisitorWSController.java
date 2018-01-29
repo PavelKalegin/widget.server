@@ -14,16 +14,6 @@ import java.util.List;
 
 
 @Controller
-public class VisitorController {
+public class VisitorWSController {
 
-    @Autowired
-    private VisitorService visitorService;
-
-    @MessageMapping("visitor.add")
-    @SendTo("/customer/visitors")
-    public VisitorModel addVisitor(VisitorModel visitorModel)
-    {
-        visitorService.addVisitorModel(visitorModel);
-        return visitorModel;
-    }
 }

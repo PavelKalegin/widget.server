@@ -7,6 +7,7 @@ import java.util.Date;
 public class VisitorModel {
     private String id;
     private String name;
+    private String roomID;
     private Date singInDate;
 
     public String getsSingInDate() {
@@ -20,9 +21,10 @@ public class VisitorModel {
         this.singInDate = new Date();
     }
 
-    public VisitorModel(String id, String name) {
+    public VisitorModel(String id, String name, String roomID) {
         this.id = id;
         this.name = name;
+        this.roomID = roomID;
         this.singInDate = new Date();
     }
 
@@ -36,6 +38,14 @@ public class VisitorModel {
 
     public String getName() {
         return name;
+    }
+
+    public String getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(String roomID) {
+        this.roomID = roomID;
     }
 
     public void setName(String name) {
