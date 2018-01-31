@@ -8,10 +8,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CustomerWSController {
 
-    @MessageMapping("/visitor.add")
-    @SendTo("customer/visitors")
-    public VisitorModel addVisitor(VisitorModel visitorModel)
-    {
-        return visitorModel;
-    }
+//    @MessageMapping("/visitor.add")
+//    @SendTo("customer/visitors")
+//    public VisitorModel addVisitor(VisitorModel visitorModel)
+//    {
+//        return visitorModel;
+//    }
 }

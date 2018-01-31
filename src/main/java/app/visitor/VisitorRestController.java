@@ -1,5 +1,7 @@
 package app.visitor;
 
+import app.chat.ChatService;
+import app.chat.MessageModel;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class VisitorRestController {
     @Autowired
     private VisitorService visitorService;
 
+    @Autowired
+    private ChatService chatService;
+
     @PostMapping("/{roomID}")
     public @ResponseBody Map<String,String> connect(@PathVariable String roomID, @RequestBody Map<String,String> parameters, HttpServletRequest request)
     {
@@ -25,4 +30,9 @@ public class VisitorRestController {
         return response;
     }
 
+    @PostMapping("/send")
+    public void send(@RequestBody MessageModel message)
+    {
+        chatService.sendMessageToRoom(message);
+    }
 }

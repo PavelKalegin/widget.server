@@ -1,8 +1,9 @@
 package app.customer;
 
+import app.chat.ChatService;
+import app.chat.MessageModel;
 import app.visitor.VisitorModel;
 import app.visitor.VisitorService;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,19 @@ public class CustomerRestController {
     @Autowired
     private VisitorService visitorService;
 
+    @Autowired
+    private ChatService chatService;
+
     @PostMapping("/connect/{roomID}")
     public String connect(@PathVariable String roomID)
     {
         return roomID;
+    }
+
+    @PostMapping("/chat")
+    public void send(MessageModel message)
+    {
+        chatService.sendMessageToVisitor(message);
     }
 
     @GetMapping("/visitors")
