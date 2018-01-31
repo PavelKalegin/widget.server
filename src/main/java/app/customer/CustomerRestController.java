@@ -4,27 +4,26 @@ import app.visitor.VisitorModel;
 import app.visitor.VisitorService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("app/customer")
 public class CustomerRestController {
 
     @Autowired
     private VisitorService visitorService;
 
-    @RequestMapping(method = RequestMethod.POST,value = "app/customer/connect/{roomID}")
+    @PostMapping("/connect/{roomID}")
     public String connect(@PathVariable String roomID)
     {
         return roomID;
     }
 
-    @RequestMapping("app/customer/visitors")
+    @GetMapping("/visitors")
     public List<VisitorModel> getAllVisitors()
     {
         return visitorService.getAllVisitors();
