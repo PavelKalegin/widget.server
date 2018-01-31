@@ -30,7 +30,7 @@ public class VisitorRestController {
         return response;
     }
 
-    @PostMapping("/send")
+    @PostMapping("/chat")
     public void send(@RequestBody MessageModel message)
     {
         chatService.sendMessageToRoom(message);

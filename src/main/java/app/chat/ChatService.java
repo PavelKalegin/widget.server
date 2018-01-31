@@ -22,5 +22,4 @@ public class ChatService {
         this.template.setUserDestinationPrefix("app");
         this.template.convertAndSend("/chat"+"/" + message.getRoomID() + "/"  + message.getVisitorID(),message);
     }
-
 }

@@ -30,7 +30,7 @@ public class VisitorService {
 
     public void deleteVisitorModel(String id)
     {
-        //TO DO implement this logic
+        //TODO implement this logic
 //        visitorModels.remove(visitorModels.stream().
 //                filter(m -> m.getId().equals(id))
 //                .findAny().get());
