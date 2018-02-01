@@ -28,7 +28,7 @@ public class CustomerRestController {
     }
 
     @PostMapping("/chat")
-    public void send(MessageModel message)
+    public void send(@RequestBody MessageModel message)
     {
         chatService.sendMessageToVisitor(message);
     }
