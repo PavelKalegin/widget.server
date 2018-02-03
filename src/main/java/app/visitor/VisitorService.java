@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Service
 public class VisitorService {
@@ -13,26 +12,24 @@ public class VisitorService {
     @Autowired
     private SimpMessagingTemplate template;
 
+    @Autowired
+    private VisitorRepository visitorRepository;
 
-    private List<VisitorModel> visitorModels = new ArrayList<>();
 
-    public List<VisitorModel> getAllVisitors()
+    public Set<VisitorEntity> getAllVisitors(Integer roomId)
     {
-        return visitorModels;
+        return visitorRepository.findByRoomId(roomId);
     }
 
-    public void addVisitorModel(VisitorModel visitorModel)
+    public void addVisitorModel(VisitorEntity visitorEntity)
     {
-        visitorModels.add(visitorModel);
+        visitorRepository.save(visitorEntity);
         this.template.setUserDestinationPrefix("app");
-        this.template.convertAndSend("/customer/visitors"+"/" + visitorModel.getRoomID(),visitorModel);
+        this.template.convertAndSend("/customer/visitors"+"/" + visitorEntity.getRoomId(), visitorEntity);
     }
 
     public void deleteVisitorModel(String id)
     {
         //TODO implement this logic
-//        visitorModels.remove(visitorModels.stream().
-//                filter(m -> m.getId().equals(id))
-//                .findAny().get());
     }
 }

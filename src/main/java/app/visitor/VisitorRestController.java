@@ -20,14 +20,12 @@ public class VisitorRestController {
     @Autowired
     private ChatService chatService;
 
-    @PostMapping("/{roomID}")
-    public @ResponseBody Map<String,String> connect(@PathVariable String roomID, @RequestBody Map<String,String> parameters, HttpServletRequest request)
+    @PostMapping("/register")
+    public @ResponseBody String connect(@RequestBody VisitorEntity visitorEntity)
     {
 
-        visitorService.addVisitorModel(new VisitorModel(request.getSession().getId(),parameters.get("name"), roomID));
-        Map<String, String> response = new HashMap<>();
-        response.put("id",request.getSession().getId());
-        return response;
+        visitorService.addVisitorModel(visitorEntity);
+        return visitorEntity.getId();
     }
 
     @PostMapping("/chat")
