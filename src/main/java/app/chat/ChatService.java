@@ -5,21 +5,37 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Service
 public class ChatService {
+
+    //region Services
     @Autowired
     private SimpMessagingTemplate template;
 
-    public void sendMessageToRoom(@NotNull MessageModel message)
+    @Autowired
+    private MessageRepository messageRepository;
+    //endregion
+
+    public void sendMessageToRoom(@NotNull MessageEntity message)
     {
+        messageRepository.save(message);
         this.template.setUserDestinationPrefix("app");
-        this.template.convertAndSend("/chat"+"/" + message.getRoomID(),message);
+        this.template.convertAndSend("/chat"+"/" + message.getRoomId(), message);
     }
 
-    public void sendMessageToVisitor(@NotNull MessageModel message)
+    public void sendMessageToVisitor(@NotNull MessageEntity message)
     {
+        messageRepository.save(message);
         this.template.setUserDestinationPrefix("app");
-        this.template.convertAndSend("/chat"+"/" + message.getRoomID() + "/"  + message.getVisitorID(),message);
+        this.template.convertAndSend("/chat"+"/"
+                + message.getRoomId() + "/"
+                + message.getVisitorId(), message);
+    }
+
+    public Set<MessageEntity> getVisitorMessages(String visitorId)
+    {
+        return messageRepository.findByVisitorId(visitorId);
     }
 }

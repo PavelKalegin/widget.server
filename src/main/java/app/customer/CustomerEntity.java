@@ -17,6 +17,7 @@ public class CustomerEntity {
         this.name = name;
     }
 
+    //region Getters
     public Integer getId() {
         return id;
     }
@@ -24,8 +25,6 @@ public class CustomerEntity {
     public String getName() {
         return name;
     }
+    //endregion
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

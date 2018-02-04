@@ -12,9 +12,6 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private RoomRepository roomRepository;
-
     public void registerCustomer(@NotNull CustomerEntity customerEntity)
     {
         customerRepository.save(customerEntity);

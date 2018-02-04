@@ -1,7 +1,5 @@
 package app.visitor;
 
-import org.hibernate.id.GUIDGenerator;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -30,6 +28,7 @@ public class VisitorEntity {
         this.active = true;
     }
 
+    //region Getter&Setter
     public String getId() {
         return id;
     }
@@ -53,4 +52,5 @@ public class VisitorEntity {
     public void setActive(boolean active) {
         this.active = active;
     }
+    //endregion
 }

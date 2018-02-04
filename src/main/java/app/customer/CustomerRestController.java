@@ -1,7 +1,7 @@
 package app.customer;
 
 import app.chat.ChatService;
-import app.chat.MessageModel;
+import app.chat.MessageEntity;
 import app.room.RoomEntity;
 import app.room.RoomService;
 import app.visitor.VisitorEntity;
@@ -17,7 +17,6 @@ import java.util.Set;
 public class CustomerRestController {
 
     //region Services
-
     @Autowired
     private VisitorService visitorService;
 
@@ -29,11 +28,9 @@ public class CustomerRestController {
 
     @Autowired
     private RoomService roomService;
-
     //endregion
 
     //region POST Methods
-
     @PostMapping("/register")
     public Integer registerCustomer(@RequestBody CustomerEntity customerEntity)
     {
@@ -56,15 +53,13 @@ public class CustomerRestController {
     }
 
     @PostMapping("/chat")
-    public void send(@RequestBody MessageModel message)
+    public void send(@RequestBody MessageEntity message)
     {
         chatService.sendMessageToVisitor(message);
     }
-
     //endregion
 
     //region GET Methods
-
     @GetMapping("{customerId}/rooms")
     public Set<RoomEntity> getRooms(@PathVariable String customerId)
     {
@@ -76,6 +71,5 @@ public class CustomerRestController {
     {
         return visitorService.getAllVisitors(roomId);
     }
-
     //endregion
 }

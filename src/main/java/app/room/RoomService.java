@@ -24,6 +24,7 @@ public class RoomService {
 
     public void registerRoom(Integer customerId)
     {
+        //TODO handle incorrect customerId
         CustomerEntity customer = customerRepository.findOne(customerId);
         RoomEntity room = new RoomEntity(customer.getName() + " room " + ThreadLocalRandom.current().nextInt());
         room.setCustomer(customer);

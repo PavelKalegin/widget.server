@@ -24,6 +24,7 @@ public class RoomEntity {
         this.name = name;
     }
 
+    //region Getters&Setters
     public Integer getId() {
         return id;
     }
@@ -47,4 +48,5 @@ public class RoomEntity {
     public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
     }
+    //endregion
 }
